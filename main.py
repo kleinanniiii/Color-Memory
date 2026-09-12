@@ -27,21 +27,23 @@ print("Jetzt Encoder drehen oder drücken!")
 
 while True:
     if arduino.in_waiting > 0:
-        line = arduino.readline().decode("utf-8", errors="ignore").strip()
+        befehl = arduino.readline().decode("utf-8", errors="ignore").strip()
 
-        if line:
-            print("Vom Makey:", line)
+        if befehl:
+            print("Vom Makey:", befehl)
 
             # Nach rechts -> nächste Farbe
-            if line == "RIGHT":
+            if befehl == "RIGHT":
                 color_index = (color_index + 1) % len(colors)
                 print("Ausgewählt:", colors[color_index])
+                arduino.write((colors[color_index] + "\n").encode())
 
             # Nach links -> vorherige Farbe
-            elif line == "LEFT":
+            elif befehl == "LEFT":
                 color_index = (color_index - 1) % len(colors)
                 print("Ausgewählt:", colors[color_index])
+                arduino.write((colors[color_index] + "\n").encode())
 
             # Drücken -> Farbe bestätigen
-            elif line == "PRESS":
+            elif befehl == "PRESS":
                 print("Bestätigt:", colors[color_index])

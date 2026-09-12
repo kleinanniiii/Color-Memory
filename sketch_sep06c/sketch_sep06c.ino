@@ -33,28 +33,31 @@ void ledsOff() {
 // =========================
 // Farbe anzeigen
 // =========================
+
+void setBothLeds(uint32_t color) {
+  leds.setPixelColor(0, color);
+  leds.setPixelColor(1, color);
+  leds.show();
+}
+
 void showColor(String color) {
 
   leds.clear();
 
   if (color == "RED") {
-    leds.setPixelColor(0, leds.Color(50, 0, 0, 0));
-    leds.setPixelColor(1, leds.Color(50, 0, 0, 0));
+   setBothLeds(leds.Color(50, 0, 0, 0));
   }
 
   else if (color == "GREEN") {
-    leds.setPixelColor(0, leds.Color(0, 50, 0, 0));
-    leds.setPixelColor(1, leds.Color(0, 50, 0, 0));
+    setBothLeds(leds.Color(0, 50, 0, 0));
   }
 
   else if (color == "BLUE") {
-    leds.setPixelColor(0, leds.Color(0, 0, 50, 0));
-    leds.setPixelColor(1, leds.Color(0, 0, 50, 0));
+    setBothLeds(leds.Color(0, 0, 50, 0));
   }
 
   else if (color == "YELLOW") {
-    leds.setPixelColor(0, leds.Color(50, 50, 0, 0));
-    leds.setPixelColor(1, leds.Color(50, 50, 0, 0));
+    setBothLeds(leds.Color(50, 50, 0, 0));
   }
 
   else if (color == "OFF") {
