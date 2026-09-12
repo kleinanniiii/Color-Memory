@@ -1,5 +1,6 @@
 import serial
 import time
+import random
 
 arduino = serial.Serial(
     port="COM3",
@@ -22,6 +23,20 @@ colors = ["RED", "GREEN", "BLUE", "YELLOW"]
 
 # Start bei RED
 color_index = 0
+
+#random Farbe erzeugen
+sequenz = []
+for i in range(2):
+    pick_color = random.choice(colors)
+    sequenz = sequenz + [pick_color] 
+
+print(sequenz)
+
+#Random Farben anzeigen
+for farbe in sequenz:
+    arduino.write((farbe+ "\n").encode())
+    time.sleep(1)
+    arduino.write(("OFF" + "\n").encode())
 
 print("Jetzt Encoder drehen oder drücken!")
 
@@ -47,3 +62,4 @@ while True:
             # Drücken -> Farbe bestätigen
             elif befehl == "PRESS":
                 print("Bestätigt:", colors[color_index])
+
