@@ -40,6 +40,9 @@ for farbe in sequenz:
 
 print("Jetzt Encoder drehen oder drücken!")
 
+#spielereingabeliste
+spielereingabe = []
+
 while True:
     if arduino.in_waiting > 0:
         befehl = arduino.readline().decode("utf-8", errors="ignore").strip()
@@ -62,4 +65,11 @@ while True:
             # Drücken -> Farbe bestätigen
             elif befehl == "PRESS":
                 print("Bestätigt:", colors[color_index])
+                spielereingabe = spielereingabe + [colors[color_index]]
+                if spielereingabe[-1] != sequenz[len(spielereingabe) - 1]:
+                    print("Game Over")
+                    break
+                print(spielereingabe)
+                if len(spielereingabe) == len(sequenz):
+                    print("Spieler hat alle Eingaben der Runde richtig")
 
