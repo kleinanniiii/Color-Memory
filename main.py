@@ -37,6 +37,7 @@ for farbe in sequenz:
     arduino.write((farbe+ "\n").encode())
     time.sleep(1)
     arduino.write(("OFF" + "\n").encode())
+    time.sleep(0.5)
 
 print("Jetzt Encoder drehen oder drücken!")
 
@@ -72,4 +73,15 @@ while True:
                 print(spielereingabe)
                 if len(spielereingabe) == len(sequenz):
                     print("Spieler hat alle Eingaben der Runde richtig")
+                    #neue Farbe hinzufuegen
+                    pick_color = random.choice(colors)
+                    sequenz = sequenz + [pick_color] 
+                    #spielereingabe leeren
+                    spielereingabe = []
+                    #neue laengere Sequenz anzeigen
+                    for farbe in sequenz:
+                        arduino.write((farbe+ "\n").encode())
+                        time.sleep(1)
+                        arduino.write(("OFF" + "\n").encode())
+                        time.sleep(0.5)
 
