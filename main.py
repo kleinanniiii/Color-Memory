@@ -18,31 +18,33 @@ time.sleep(2)
 # Start-/Bootmeldungen wegwerfen
 arduino.reset_input_buffer()
 
-# Die vier auswählbaren Farben
-colors = ["RED", "GREEN", "BLUE", "YELLOW"]
+# Aufgabe 1)
+# Erstelle eine Liste mit den vier auswählbaren Farben.
 
-# Start bei RED
-color_index = 0
 
-#random Farbe erzeugen
-sequenz = []
-for i in range(2):
-    pick_color = random.choice(colors)
-    sequenz = sequenz + [pick_color] 
+# Aufgabe 2)
+# Erstelle eine Variable für die aktuell ausgewählte Farbe.
+# Zu Beginn soll RED ausgewählt sein.
+
+# Aufgabe 3)
+# Erstelle eine leere Liste namens sequenz.
+# Wähle zwei zufällige Farben aus und speichere sie in sequenz.
+
 
 print(sequenz)
 
 #Random Farben anzeigen
 for farbe in sequenz:
-    arduino.write((farbe+ "\n").encode())
+    arduino.write((farbe + "\n").encode())
     time.sleep(1)
     arduino.write(("OFF" + "\n").encode())
     time.sleep(0.5)
 
 print("Jetzt Encoder drehen oder drücken!")
 
-#spielereingabeliste
-spielereingabe = []
+# Aufgabe 4)
+# Erstelle eine leere Liste für die Spielereingaben
+
 
 while True:
     if arduino.in_waiting > 0:
@@ -51,17 +53,13 @@ while True:
         if befehl:
             print("Vom Makey:", befehl)
 
-            # Nach rechts -> nächste Farbe
-            if befehl == "RIGHT":
-                color_index = (color_index + 1) % len(colors)
-                print("Ausgewählt:", colors[color_index])
-                arduino.write((colors[color_index] + "\n").encode())
+            # Aufgabe 5)
+            # Prüfe, ob der Encoder nach rechts gedreht wurde und wähle die nächste Farbe
+            
 
-            # Nach links -> vorherige Farbe
-            elif befehl == "LEFT":
-                color_index = (color_index - 1) % len(colors)
-                print("Ausgewählt:", colors[color_index])
-                arduino.write((colors[color_index] + "\n").encode())
+            # Aufgabe 6)
+            # Prüfe, ob der Encoder nach links gedreht wurde und wähle die vorherige Farbe
+            
 
             # Drücken -> Farbe bestätigen
             elif befehl == "PRESS":
@@ -71,13 +69,17 @@ while True:
                     print("Game Over")
                     break
                 print(spielereingabe)
-                if len(spielereingabe) == len(sequenz):
-                    print("Spieler hat alle Eingaben der Runde richtig")
-                    #neue Farbe hinzufuegen
-                    pick_color = random.choice(colors)
-                    sequenz = sequenz + [pick_color] 
-                    #spielereingabe leeren
-                    spielereingabe = []
+
+                # Aufgabe 7)
+                # Prüfe, ob die komplette Runde richtig war
+                
+                    # Aufgabe 8)
+                    # Füge der Sequenz eine neue zufällige Farbe hinzu
+                    
+                    # Aufgabe 9)
+                    # Leere die Spielereingaben für die nächste Runde
+                    
+
                     #neue laengere Sequenz anzeigen
                     for farbe in sequenz:
                         arduino.write((farbe+ "\n").encode())
