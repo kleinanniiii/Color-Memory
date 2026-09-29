@@ -1,6 +1,7 @@
 import serial
 import time
 import random
+import platform
 
 # Check which OS is in use
 if platform.system() == "Windows":
