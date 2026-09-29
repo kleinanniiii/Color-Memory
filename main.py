@@ -1,9 +1,18 @@
 import serial
 import time
 import random
+import platform
+
+# Check which OS is in use
+if platform.system() == "Windows":
+    port = "COM3"
+elif platform.system() == "Linux":
+    port = "/dev/ttyUSB0"
+else:
+    raise RuntimeError("OS not supported")
 
 arduino = serial.Serial(
-    port="COM3",
+    port= port,
     baudrate=115200,
     timeout=0.2
 )
