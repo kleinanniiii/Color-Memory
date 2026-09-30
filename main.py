@@ -34,11 +34,12 @@ arduino.reset_input_buffer()
 
 # Aufgabe 2)
 # Erstelle eine Variable für die aktuell ausgewählte Farbe.
-# Zu Beginn soll RED ausgewählt sein.
+# Zu Beginn soll RED ausgewählt sein Erst Red,Green,Blue,Yellow.
 
 # Aufgabe 3)
 # Erstelle eine leere Liste namens sequenz.
 # Wähle zwei zufällige Farben aus und speichere sie in sequenz.
+#Für random benutze random.choice(...)    In der Klammer name der benutzen Variable
 
 
 print(sequenz)
@@ -64,13 +65,15 @@ while True:
             print("Vom Makey:", befehl)
 
             # Aufgabe 5)
-            # Prüfe, ob der Encoder nach rechts gedreht wurde und wähle die nächste Farbe
+            # Prüfe, ob der Encoder nach rechts gedreht wurde und wähle die nächste Farbe.
+            # Bitte neue Variable color_index nennen.
             
-
+            arduino.write((colors[color_index] + "\n").encode())
             # Aufgabe 6)
             # Prüfe, ob der Encoder nach links gedreht wurde und wähle die vorherige Farbe
+            # Bitte neue Variable color_index nennen.
             
-
+            arduino.write((colors[color_index] + "\n").encode())
             # Drücken -> Farbe bestätigen
             elif befehl == "PRESS":
                 print("Bestätigt:", colors[color_index])
@@ -85,6 +88,7 @@ while True:
                 
                     # Aufgabe 8)
                     # Füge der Sequenz eine neue zufällige Farbe hinzu
+                    #Für random benutze random.choice(...)    In der Klammer name der benutzen Variable
                     
                     # Aufgabe 9)
                     # Leere die Spielereingaben für die nächste Runde
